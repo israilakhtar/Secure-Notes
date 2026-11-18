@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Secure Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Authentication screen -->
+  <main id="auth-view" class="auth" hidden>
+    <section class="auth-intro">
+      <h1 class="brand">Secure Notes</h1>
+      <p class="tagline">Notes that only you can open.</p>
+      <p class="intro-text">Every note is tied to your account. Nobody else can read it or delete it.</p>
+    </section>
+
+    <section class="auth-panel">
+      <div class="tabs" role="tablist">
+        <button type="button" id="tab-login" class="tab active" role="tab" aria-selected="true">Log in</button>
+        <button type="button" id="tab-register" class="tab" role="tab" aria-selected="false">Create account</button>
+      </div>
+
+      <form id="auth-form" novalidate>
+        <div class="field" id="name-field" hidden>
+          <label for="name">Full name</label>
+          <input id="name" type="text" autocomplete="name" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" maxlength="254">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" maxlength="72">
+          <p id="password-hint" class="hint" hidden>Use 8 to 72 characters.</p>
+        </div>
+        <p id="auth-error" class="form-error" role="alert" hidden></p>
+        <button type="submit" id="auth-submit" class="btn primary">Log in</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Dashboard -->
+  <div id="dashboard-view" hidden>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <span class="brand small">Secure Notes</span>
+        <div class="topbar-user">
+          <span id="welcome" class="welcome"></span>
+          <button type="button" id="logout-btn" class="btn ghost">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="composer" aria-labelledby="composer-title">
+        <h2 id="composer-title">Add new note</h2>
+        <form id="note-form" novalidate>
+          <div class="field">
+            <label for="note-title">Note title</label>
+            <input id="note-title" type="text" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="note-content">Note content</label>
+            <textarea id="note-content" rows="5" maxlength="5000"></textarea>
+          </div>
+          <p id="note-error" class="form-error" role="alert" hidden></p>
+          <button type="submit" class="btn primary">Save note</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="notes-title">
+        <h2 id="notes-title">Your notes</h2>
+        <p id="empty-state" class="empty" hidden>No notes yet. Write your first note above.</p>
+        <div id="notes-grid" class="grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
